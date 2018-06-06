@@ -6,6 +6,7 @@ contract FilesRegistry {
 
     address public admin;
 
+    // might be swarm later
     address public attestorRegistryAddress;
     
     // time when the file has been pushed/verified to be in IPFS
