@@ -1,4 +1,4 @@
-import bs58 from 'bs58';
+let bs58 = require('bs58');
 // https://ethereum.stackexchange.com/a/39961/38862
 
 module.exports = {
