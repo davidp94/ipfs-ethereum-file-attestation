@@ -1,12 +1,6 @@
 const express = require('express')
 const app = express()
 
-app.get('/', (req, res) => {
-    // TODO: return parameter of attestor (address, smart contract FileRegistry)
-    return res.send('Hi guys!');
-})
-
-
 const IPFS_HOST = process.env.IPFS_HOST || 'localhost';
 const IPFS_PORT = process.env.IPFS_PORT || '5001';
 const IPFS_PROTOCOL = process.env.IPFS_PROTOCOL || 'http';
@@ -18,6 +12,11 @@ const ipfsAPI = require('ipfs-api')
 
 const ipfsInstance = ipfsAPI(IPFS_HOST, IPFS_PORT, IPFS_PROTOCOL);
 
+
+app.get('/', (req, res) => {
+    // TODO: return parameter of attestor (address, smart contract FileRegistry)
+    return res.send('Hi guys!');
+})
 
 app.get('/verify/:hash', (req, res) => {
     let hash = req.params.hash;
