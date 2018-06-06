@@ -39,6 +39,11 @@ app.get('/verify/:hash', (req, res) => {
     });
 });
 
+app.get('/convert-qm-to-hash/:h', (req, res) => {
+    let ipfsHash = ipfsHashUtil.getBytes32FromIpfsHash(req.params.h);
+    return res.send(`${ipfsHash}`);
+});
+
 app.listen(4242, () => {
     console.log('Example app listening on port 4242!')
 })
