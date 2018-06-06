@@ -27,7 +27,9 @@ app.get('/verify/:hash', (req, res) => {
     }
 
     let ipfsHash = ipfsHashUtil.getIpfsHashFromBytes32(hash);
-    return ipfsInstance.files.pin(ipfsHash, (err) => {
+    return ipfsInstance.pin.add(ipfsHash, {
+        recursive: true
+    }, (err) => {
         if (err) {
             return res.status(500).send(`Could not pin this hash, ${err}`);
         }
