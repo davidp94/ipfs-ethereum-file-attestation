@@ -80,5 +80,25 @@ contract('FilesRegistry', function(accounts) {
         
     });
 
+    it("would attest a file and not let anyone remove it", async function () {
+        hashFile = web3.sha3('someblob');
+
+        fileExists = await fr.isFileStored(hashFile);
+
+        assert.equal(fileExists, false);
+
+        attestFileTx = await fr.attestFile(hashFile, {from: accounts[1]});
+        console.log(attestFileTx.receipt.gasUsed);
+
+        fileExists = await fr.isFileStored(hashFile);
+        assert.equal(fileExists, true);
+
+        await assertRevert(fr.removeFile(hashFile, {from: accounts[8]}));
+
+        fileExists = await fr.isFileStored(hashFile);
+        assert.equal(fileExists, true);
+        
+    });
+
 
 });
