@@ -48,7 +48,7 @@ contract FilesRegistry {
     }
 
     function removeFile(bytes32 _hash) isAttestor(msg.sender) public returns (bool) {
-        hashesTimeVerified[_hash] = block.timestamp;
+        hashesTimeVerified[_hash] = 0;
         return true;
     }
 

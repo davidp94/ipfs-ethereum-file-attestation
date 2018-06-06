@@ -4,7 +4,6 @@ contract AttestorsRegistry {
 
     address public admin;
     
-    // time when the file has been pushed/verified to be in IPFS
     mapping (address => bool) public attestors;
 
     constructor() public {
