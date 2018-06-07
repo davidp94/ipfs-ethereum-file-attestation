@@ -84,11 +84,19 @@ Pull the repo for the attestor.
 git pull https://github.com/davidp94/ipfs-ethereum-file-attestation.git```
 
 ```
-npm install```
+
+Install the npm dependencies
+```
+npm install
+```
+
+Go to express
 
 ```
 cd server
 ```
+
+Set the env vars for the attestor server to run.
 
 ```
 export IPFS_HOST=localhost # change with your trusted ipfs daemon
@@ -99,16 +107,20 @@ export WEB3_HTTP_URL='http://127.0.0.1:7545/' # your ethereum JSON RPC endpoint 
 export FILE_REGISTRY_SENDER='0xde6C7Ed3fAf727F0f99220D4855c03969DC415E7' # the unlocked account in your WEB3 endpoint
 ```
 
+Run the server (or use pm2)
+
 ```
 node .
 ```
 
-Your attestor is available in port http://localhost:4242
+Your attestor is available in port 4242 http://localhost:4242
 
 In order to attest that a ipfs hash exists
 
-The slave can do a `ipfs add myfile`
+First, the slave add a file he wants to attest by running `ipfs add myfile`
 
-get the qmhash and hit the attestor `http://localhost:4242/verify/QmT31BLSFK5C24i3WwRETg4BXHkJ6LZgwnBgfcq9s7mrkn` or `http://localhost:4242/verify/0x45c51ffe2b66870268e179349e800fe3d87d06100f667b5d4356e16b64b5394f`
+He will get the qmhash `QmT31BLSFK5C24i3WwRETg4BXHkJ6LZgwnBgfcq9s7mrkn`
+
+He can then hit the attestor `http://localhost:4242/verify/QmT31BLSFK5C24i3WwRETg4BXHkJ6LZgwnBgfcq9s7mrkn` or `http://localhost:4242/verify/0x45c51ffe2b66870268e179349e800fe3d87d06100f667b5d4356e16b64b5394f`
 
 The attestor would download and pin the file. And send a tx on the chain.
