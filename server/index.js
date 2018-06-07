@@ -37,15 +37,19 @@ app.get('/', (req, res) => {
 })
 
 app.get('/verify/:hash', (req, res) => {
+    var forcePin = req.query.forcePin || false;    
     let hash = req.params.hash;
-    var forcePin = req.query.forcePin || false;
-    console.log(`verify hash ${hash}`);
-
-    if (hash.length != 66 && hash.substring(0, 2) != '0x') {
-        return res.status(500).send(`not a hash, valid is "0x68371d7e884c168ae2022c82bd837d51837718a7f7dfb7aa3f753074a35e1d87"`);
+    let ipfsHash;
+    if (hash.substring(0,2) == 'Qm') {
+        ipfsHash = hash;
+        hash = ipfsHashUtil.getBytes32FromIpfsHash(hash);
+    }
+    else {
+        ipfsHash = ipfsHashUtil.getIpfsHashFromBytes32(hash);
     }
 
-    let ipfsHash = ipfsHashUtil.getIpfsHashFromBytes32(hash);
+    console.log(`verify hash ${hash} ${ipfsHash}`);
+
     return fileRegistryInstance.methods.fileLastVerifiedTime(hash).call((err, result)=> {
         if (err) {
             return res.status(500).send(`Could not pin this hash, ${err}`);
