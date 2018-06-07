@@ -79,9 +79,9 @@ Both of the IPFS node would have direct connections.
 
 ### Attestor Installation
 
-Pull the repo for the attestor.
+Clone the repo for the attestor.
 ```
-git pull https://github.com/davidp94/ipfs-ethereum-file-attestation.git```
+git clone https://github.com/davidp94/ipfs-ethereum-file-attestation.git
 
 ```
 
@@ -90,7 +90,7 @@ Install the npm dependencies
 npm install
 ```
 
-Go to express
+Go to the server folder
 
 ```
 cd server
