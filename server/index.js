@@ -37,24 +37,23 @@ app.get('/', (req, res) => {
 })
 
 app.get('/verify/:hash', (req, res) => {
-    var forcePin = req.query.forcePin || false;    
+    var forcePin = req.query.forcePin || false;
     let hash = req.params.hash;
     let ipfsHash;
-    if (hash.substring(0,2) == 'Qm') {
+    if (hash.substring(0, 2) == 'Qm') {
         ipfsHash = hash;
         hash = ipfsHashUtil.getBytes32FromIpfsHash(hash);
-    }
-    else {
+    } else {
         ipfsHash = ipfsHashUtil.getIpfsHashFromBytes32(hash);
     }
 
     console.log(`verify hash ${hash} ${ipfsHash}`);
 
-    return fileRegistryInstance.methods.fileLastVerifiedTime(hash).call((err, result)=> {
+    return fileRegistryInstance.methods.fileLastVerifiedTime(hash).call((err, result) => {
         if (err) {
             return res.status(500).send(`Could not pin this hash, ${err}`);
         }
-        if(forcePin || result == 0) {
+        if (forcePin || result == 0) {
             return ipfsInstance.pin.add(ipfsHash, {
                 recursive: true
             }, (err) => {
@@ -66,11 +65,10 @@ app.get('/verify/:hash', (req, res) => {
                     })
                     .then((receipt) => {
                         console.log(`Receipt is here: ${JSON.stringify(receipt)}`);
-                        return res.send(`attested hash ${hash}`);
+                        return res.send(`attested hash ${hash}<br>${JSON.stringify(receipt,null,4)}`);
                     });
             });
-        }
-        else {
+        } else {
             return res.status(500).send(`Could not pin this hash because it is already pinned since timestamp ${result}`);
         }
     })
