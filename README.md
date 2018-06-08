@@ -1,7 +1,6 @@
 # ipfs-ethereum-file-attestation
 attest that a file exists in ipfs (via a smart contract)
 
-
 ## get started
 
 
@@ -124,3 +123,7 @@ He will get the qmhash `QmT31BLSFK5C24i3WwRETg4BXHkJ6LZgwnBgfcq9s7mrkn`
 He can then hit the attestor `http://localhost:4242/verify/QmT31BLSFK5C24i3WwRETg4BXHkJ6LZgwnBgfcq9s7mrkn` or `http://localhost:4242/verify/0x45c51ffe2b66870268e179349e800fe3d87d06100f667b5d4356e16b64b5394f`
 
 The attestor would download and pin the file. And send a tx on the chain.
+
+
+### video
+[![Attestation](https://www.youtube.com/upload_thumbnail?v=k_cPuCSwTdk&t=hqdefault&ts=1528452552925)](https://www.youtube.com/watch?v=k_cPuCSwTdk)
