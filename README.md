@@ -126,4 +126,4 @@ The attestor would download and pin the file. And send a tx on the chain.
 
 
 ### video
-[![Attestation](https://www.youtube.com/upload_thumbnail?v=k_cPuCSwTdk&t=hqdefault&ts=1528452552925)](https://www.youtube.com/watch?v=k_cPuCSwTdk)
+[![Attestation](https://img.youtube.com/vi/k_cPuCSwTdk/0.jpg)](https://www.youtube.com/watch?v=k_cPuCSwTdk)
